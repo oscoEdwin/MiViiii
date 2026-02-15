@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Encriptación Romántica ✨</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(ellipse at center, #1a0033 0%, #000000 100%);
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    /* Partículas de fondo */
+    #particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #ff69b4;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: float 15s infinite ease-in-out;
+      box-shadow: 0 0 10px #ff69b4;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+
+      25% {
+        transform: translateY(-100px) translateX(50px);
+      }
+
+      50% {
+        transform: translateY(-200px) translateX(-30px);
+      }
+
+      75% {
+        transform: translateY(-100px) translateX(-70px);
+      }
+    }
+
+    #container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    #matrix {
+      white-space: pre;
+      line-height: 1.2em;
+      font-size: 11px;
+      display: none;
+      text-shadow: 0 0 5px currentColor;
+      filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.3));
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.85;
+      }
+    }
+
+    #startBtn {
+      background: linear-gradient(135deg, #ff69b4 0%, #ff1493 50%, #ff69b4 100%);
+      background-size: 200% 200%;
+      color: white;
+      font-family: 'Courier New', monospace;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 20px 40px;
+      border: 3px solid #fff;
+      cursor: pointer;
+      border-radius: 50px;
+      box-shadow:
+        0 0 20px rgba(255, 105, 180, 0.6),
+        0 0 40px rgba(255, 105, 180, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      animation: gradientShift 3s ease infinite, glow 2s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes gradientShift {
+
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    @keyframes glow {
+
+      0%,
+      100% {
+        box-shadow:
+          0 0 20px rgba(255, 105, 180, 0.6),
+          0 0 40px rgba(255, 105, 180, 0.4),
+          inset 0 0 20px rgba(255, 255, 255, 0.2);
+      }
+
+      50% {
+        box-shadow:
+          0 0 30px rgba(255, 105, 180, 0.8),
+          0 0 60px rgba(255, 105, 180, 0.6),
+          inset 0 0 30px rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    #startBtn:hover {
+      transform: scale(1.1);
+      box-shadow:
+        0 0 40px rgba(255, 105, 180, 0.9),
+        0 0 80px rgba(255, 105, 180, 0.6),
+        inset 0 0 30px rgba(255, 255, 255, 0.4);
+    }
+
+    #startBtn::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      }
+
+      100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+      }
+    }
+
+    /* Mensaje final */
+    #finalMessage {
+      display: none;
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 40px;
+      font-weight: bold;
+      color: #ff69b4;
+      text-shadow:
+        0 0 20px #ff69b4,
+        0 0 40px #ff1493,
+        0 0 60px #ff00ff;
+      animation: finalGlow 2s ease-in-out infinite;
+      z-index: 10;
+      letter-spacing: 10px;
+    }
+
+    @keyframes finalGlow {
+
+      0%,
+      100% {
+        text-shadow:
+          0 0 20px #ff69b4,
+          0 0 40px #ff1493,
+          0 0 60px #ff00ff;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      50% {
+        text-shadow:
+          0 0 30px #ff69b4,
+          0 0 60px #ff1493,
+          0 0 90px #ff00ff,
+          0 0 120px #ff00ff;
+        transform: translate(-50%, -50%) scale(1.05);
+      }
+    }
+
+    /* Botón Florecer */
+    #bloomBtn {
+      display: none;
+      position: fixed;
+      top: 55%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #ff69b4 0%, #ff1493 50%, #ff69b4 100%);
+      background-size: 200% 200%;
+      color: white;
+      font-family: 'Courier New', monospace;
+      font-size: 28px;
+      font-weight: bold;
+      padding: 20px 50px;
+      border: 3px solid #fff;
+      cursor: pointer;
+      border-radius: 50px;
+      box-shadow:
+        0 0 20px rgba(255, 105, 180, 0.6),
+        0 0 40px rgba(255, 105, 180, 0.4);
+      animation: gradientShift 3s ease infinite, pulse 2s ease-in-out infinite;
+      z-index: 10;
+      transition: all 0.5s ease;
+    }
+
+    #bloomBtn:hover {
+      transform: translateX(-50%) scale(1.1);
+    }
+
+    /* Botón Mensaje - debajo del árbol */
+    #messageBtn {
+      display: none;
+      position: fixed;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+      background-size: 200% 200%;
+      color: #8b4513;
+      font-family: 'Courier New', monospace;
+      font-size: 22px;
+      font-weight: bold;
+      padding: 18px 40px;
+      border: 3px solid #8b4513;
+      cursor: pointer;
+      border-radius: 50px;
+      box-shadow:
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 0 40px rgba(255, 215, 0, 0.4);
+      animation: gradientShift 3s ease infinite, bounceBtn 2s ease-in-out infinite;
+      z-index: 15;
+      transition: all 0.3s ease;
+    }
+
+    @keyframes bounceBtn {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+    }
+
+    #messageBtn:hover {
+      transform: translateX(-50%) scale(1.1);
+      box-shadow:
+        0 0 30px rgba(255, 215, 0, 0.8),
+        0 0 60px rgba(255, 215, 0, 0.6);
+    }
+
+    /* Pergamino */
+    #scrollContainer {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      z-index: 20;
+      transition: all 0.5s ease;
+    }
+
+    #scrollContainer.show {
+      display: block;
+      animation: unrollScroll 1s ease-out forwards;
+    }
+
+    @keyframes unrollScroll {
+      0% {
+        transform: translate(-50%, -50%) scale(0) rotateX(90deg);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(1) rotateX(0deg);
+        opacity: 1;
+      }
+    }
+
+    #scroll {
+      width: 600px;
+      min-height: 500px;
+      background: linear-gradient(to bottom,
+          #f4e4c1 0%,
+          #f0ddb0 10%,
+          #f4e4c1 20%,
+          #f0ddb0 80%,
+          #e6d5a8 100%);
+      border-radius: 10px;
+      padding: 50px 60px;
+      box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.5),
+        inset 0 0 60px rgba(139, 69, 19, 0.1);
+      position: relative;
+      border: 2px solid #8b4513;
+    }
+
+    #scroll::before,
+    #scroll::after {
+      content: '';
+      position: absolute;
+      width: 35px;
+      height: 100%;
+      background: linear-gradient(to right,
+          #8b4513 0%,
+          #a0522d 50%,
+          #8b4513 100%);
+      top: 0;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #scroll::before {
+      left: -18px;
+      border-radius: 18px 0 0 18px;
+    }
+
+    #scroll::after {
+      right: -18px;
+      border-radius: 0 18px 18px 0;
+    }
+
+    #scrollTitle {
+      font-family: 'Brush Script MT', cursive, 'Courier New', monospace;
+      font-size: 38px;
+      color: #8b4513;
+      text-align: center;
+      margin-bottom: 35px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      letter-spacing: 2px;
+    }
+
+    #messageContent {
+      font-family: 'Brush Script MT', cursive, 'Georgia', serif;
+      font-size: 24px;
+      color: #4a2511;
+      line-height: 1.8;
+      text-align: center;
+      padding: 20px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    #messageContent p {
+      margin-bottom: 20px;
+    }
+
+    #closeScroll {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #8b4513;
+      color: #f4e4c1;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    #closeScroll:hover {
+      background: #a0522d;
+      transform: rotate(90deg);
+    }
+
+    /* Overlay oscuro */
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 19;
+    }
+
+    #overlay.show {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Animación del árbol */
+    #treeContainer {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      width: 600px;
+      height: 600px;
+    }
+
+    /* Canvas para las ramas */
+    #treeCanvas {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Sombra del árbol */
+    #treeShadow {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 40px;
+      background: radial-gradient(ellipse, rgba(0, 0, 0, 0.3), transparent);
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    #treeShadow.show {
+      animation: showShadow 1s ease-out 2s forwards;
+    }
+
+    @keyframes showShadow {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Corazones del árbol */
+    .tree-heart {
+      position: absolute;
+      font-size: 0;
+      opacity: 0;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      z-index: 6;
+    }
+
+    .tree-heart.bloom {
+      animation: bloomHeart 0.8s ease-out forwards;
+    }
+
+    .tree-heart:hover {
+      transform: scale(1.4) rotate(15deg) !important;
+      filter: drop-shadow(0 0 15px rgba(255, 105, 180, 1));
+    }
+
+    @keyframes bloomHeart {
+      0% {
+        opacity: 0;
+        font-size: 0;
+        transform: scale(0) rotate(0deg);
+      }
+
+      50% {
+        transform: scale(1.3) rotate(180deg);
+      }
+
+      100% {
+        opacity: 1;
+        font-size: 20px;
+        transform: scale(1) rotate(360deg);
+      }
+    }
+
+    /* Corazones flotantes generales */
+    .heart {
+      position: absolute;
+      font-size: 30px;
+      opacity: 0;
+      animation: floatHeart 6s ease-in-out infinite;
+      z-index: 5;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        opacity: 0;
+        transform: translateY(100vh) scale(0);
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-100vh) scale(1.5) rotate(360deg);
+      }
+    }
+
+    /* Contador de progreso */
+    #progressBar {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 30px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid #ff69b4;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+    }
+
+    #progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff69b4, #ff1493, #ff69b4);
+      background-size: 200% 100%;
+      animation: progressGradient 2s linear infinite;
+      transition: width 0.1s linear;
+    }
+
+    @keyframes progressGradient {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      100% {
+        background-position: 200% 50%;
+      }
+    }
+
+    /* Pétalos cayendo */
+    .petal {
+      position: fixed;
+      font-size: 16px;
+      opacity: 0;
+      z-index: 7;
+      animation: fallPetal 5s ease-in infinite;
+    }
+
+    @keyframes fallPetal {
+      0% {
+        transform: translateY(-50px) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 0.5;
+      }
+
+      100% {
+        transform: translateY(100vh) translateX(100px) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="particles"></div>
+
+  <div id="container">
+    <button id="startBtn">
+      💖 Iniciamos Amorcito? 💖
+    </button>
+    <div id="matrix"></div>
+  </div>
+
+  <!-- Audio oculto - MÚLTIPLES INTENTOS DE CARGA -->
+  <audio id="backgroundMusic" preload="auto">
+    <source src="pati.mp3" type="audio/mpeg">
+  </audio>
+
+
+  <div id="progressBar">
+    <div id="progress"></div>
+  </div>
+
+  <div id="finalMessage">
+    <center>❤️ TE AMO ❤️</center><br>
+    Mi Princesa Hermosa Me Hubiera gustado <br>
+    pasar el dia contigo pero espero <br>
+    tengamos la oportunidad de poder estar Juntos.
+    Feliz dia del Amor mi VIDA.
+  </div>
+
+  <button id="bloomBtn">🌸 FLORECER 🌸</button>
+
+  <button id="messageBtn">📜 Leer Mensaje 📜</button>
+
+  <div id="treeContainer">
+    <div id="treeShadow"></div>
+    <canvas id="treeCanvas" width="600" height="600"></canvas>
+  </div>
+
+  <div id="overlay"></div>
+
+  <div id="scrollContainer">
+    <div id="scroll">
+      <button id="closeScroll">×</button>
+      <div id="scrollTitle">💕 Para Ti, Mi Amor 💕</div>
+      <div id="messageContent">
+        <p>En este árbol de corazones,</p>
+        <p>cada hoja representa un momento especial contigo.</p>
+        <p>Cada rama es un recuerdo que guardamos juntos,</p>
+        <p>y el tronco fuerte es nuestro amor inquebrantable.</p>
+        <p>Eres la razón por la que mi corazón florece,</p>
+        <p>la luz que ilumina mis días más oscuros,</p>
+        <p>y la melodía que hace que mi vida sea perfecta.</p>
+        <p><strong>Te amo más de lo que las palabras pueden expresar.</strong></p>
+        <p>Hoy, mañana y siempre... 💖</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const width = 150;
+    const height = 50;
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*♥♡★☆";
+    const matrixDiv = document.getElementById("matrix");
+    const startBtn = document.getElementById("startBtn");
+    const progressBar = document.getElementById("progressBar");
+    const progress = document.getElementById("progress");
+    const finalMessage = document.getElementById("finalMessage");
+    const bloomBtn = document.getElementById("bloomBtn");
+    const messageBtn = document.getElementById("messageBtn");
+    const treeContainer = document.getElementById("treeContainer");
+    const treeCanvas = document.getElementById("treeCanvas");
+    const ctx = treeCanvas.getContext("2d");
+    const treeShadow = document.getElementById("treeShadow");
+    const scrollContainer = document.getElementById("scrollContainer");
+    const overlay = document.getElementById("overlay");
+    const closeScroll = document.getElementById("closeScroll");
+    const backgroundMusic = document.getElementById("backgroundMusic");
+
+    // Crear partículas de fondo
+    const particlesDiv = document.getElementById("particles");
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement("div");
+      particle.className = "particle";
+      particle.style.left = Math.random() * 100 + "%";
+      particle.style.top = Math.random() * 100 + "%";
+      particle.style.animationDelay = Math.random() * 15 + "s";
+      particle.style.animationDuration = (10 + Math.random() * 10) + "s";
+      particlesDiv.appendChild(particle);
+    }
+
+    const romanticColors = [
+      "#ff69b4", "#ff1493", "#ff00ff", "#ff007f", "#ff69b4",
+      "#ff85a2", "#ff5f8f", "#ff4081", "#ff0066", "#ff77aa",
+      "#ffc0cb", "#ff91a4", "#ff6b9d", "#ff1a75", "#ff0080"
+    ];
+
+    // Patrón TE AMO
+    const pattern = [
+      "TTTTTTTTTTT  EEEEEEEEEE            AA             MM         MM       OOOOOOO   ",
+      "TTTTTTTTTTT  EEEEEEEEEE           AAAA            MMM       MMM      OOOOOOOOO  ",
+      "    TTT      EEE                 AAAAAA           MMMM     MMMM     OO       OO ",
+      "    TTT      EEE                AAA  AAA          MMMMM   MMMMM    OO         OO ",
+      "    TTT      EEEEEEEE          AAA    AAA         MMM MM MM MMM    OO         OO ",
+      "    TTT      EEEEEEEE         AAAA     AAA        MMM  MMM  MMM    OO         OO ",
+      "    TTT      EEE             AAAAAAAAAAAAAA       MMM   M   MMM    OO         OO ",
+      "    TTT      EEE            AAAAAAAAAAAAAAAA      MMM       MMM     OO       OO  ",
+      "    TTT      EEEEEEEEEE    AAA            AAA     MMM       MMM      OOOOOOOOO   ",
+      "    TTT      EEEEEEEEEE   AAA              AAA    MMM       MMM       OOOOOOO    "
+    ];
+
+    function randomChar() {
+      return chars[Math.floor(Math.random() * chars.length)];
+    }
+
+    function randomColor() {
+      return romanticColors[Math.floor(Math.random() * romanticColors.length)];
+    }
+
+    // Crear corazones flotantes
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = ["💖", "💕", "💗", "💓", "💝"][Math.floor(Math.random() * 5)];
+      heart.style.left = Math.random() * 100 + "%";
+      heart.style.animationDelay = Math.random() * 3 + "s";
+      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 8000);
+    }
+
+    // Verificar si una posición está en el patrón TE AMO
+    function isInPattern(x, y) {
+      let offsetY = Math.floor(height / 2 - pattern.length / 2);
+      let offsetX = Math.floor(width / 2 - pattern[0].length / 2);
+
+      if (
+        y >= offsetY && y < offsetY + pattern.length &&
+        x >= offsetX && x < offsetX + pattern[0].length
+      ) {
+        let patternX = x - offsetX;
+        let patternY = y - offsetY;
+
+        if (patternX < pattern[patternY].length) {
+          let char = pattern[patternY][patternX];
+          return char !== " ";
+        }
+      }
+      return false;
+    }
+
+    function fillScreen(callback) {
+      progressBar.style.display = "block";
+      let output = Array(height).fill("").map(() => Array(width).fill(" "));
+      let totalChars = width * height;
+      let filled = 0;
+
+      const interval = setInterval(() => {
+        for (let i = 0; i < 200 && filled < totalChars; i++) {
+          let y = Math.floor(filled / width);
+          let x = filled % width;
+
+          if (isInPattern(x, y)) {
+            output[y][x] = " ";
+          } else {
+            output[y][x] = randomChar();
+          }
+          filled++;
+        }
+
+        progress.style.width = (filled / totalChars * 100) + "%";
+
+        let html = "";
+        for (let y = 0; y < height; y++) {
+          for (let x = 0; x < width; x++) {
+            let ch = output[y][x];
+            if (ch === " ") {
+              html += " ";
+            } else {
+              html += `<span style="color:${randomColor()}">${ch}</span>`;
+            }
+          }
+          html += "\n";
+        }
+        matrixDiv.innerHTML = html;
+
+        if (filled >= totalChars) {
+          clearInterval(interval);
+          setTimeout(() => {
+            progressBar.style.display = "none";
+            callback();
+          }, 500);
+        }
+      }, 15);
+    }
+
+    function revealMessage() {
+      let iterations = 0;
+      const maxIterations = 150;
+
+      const revealInterval = setInterval(() => {
+        iterations++;
+
+        let html = "";
+        for (let y = 0; y < height; y++) {
+          for (let x = 0; x < width; x++) {
+            if (isInPattern(x, y)) {
+              html += " ";
+            } else {
+              html += `<span style="color:${randomColor()}">${randomChar()}</span>`;
+            }
+          }
+          html += "\n";
+        }
+        matrixDiv.innerHTML = html;
+
+        if (iterations >= maxIterations) {
+          clearInterval(revealInterval);
+          showFinalMessage();
+        }
+      }, 50);
+    }
+
+    function showFinalMessage() {
+      setTimeout(() => {
+        matrixDiv.style.display = "none";
+        finalMessage.style.display = "block";
+
+        // Crear algunos corazones
+        const heartInterval = setInterval(createHeart, 300);
+
+        // Mostrar botón Florecer después de 3 segundos
+        setTimeout(() => {
+          bloomBtn.style.display = "block";
+          clearInterval(heartInterval);
+        }, 3000);
+      }, 1000);
+    }
+
+    // Dibujar rama recursiva
+    function drawBranch(x, y, length, angle, depth, maxDepth) {
+      if (depth > maxDepth) return;
+
+      const endX = x + length * Math.cos(angle);
+      const endY = y - length * Math.sin(angle);
+
+      // Grosor de la rama según la profundidad
+      const lineWidth = Math.max(1, (maxDepth - depth + 1) * 2);
+
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(endX, endY);
+      ctx.strokeStyle = depth === 0 ? "#2d1810" : "#3d2820";
+      ctx.lineWidth = lineWidth;
+      ctx.lineCap = "round";
+      ctx.stroke();
+
+      // Si estamos cerca del final de las ramas, agregar corazón
+      if (depth >= maxDepth - 1) {
+        setTimeout(() => {
+          createTreeHeart(endX, endY);
+        }, depth * 100);
+      }
+
+      if (depth < maxDepth) {
+        const newLength = length * (0.65 + Math.random() * 0.1);
+        const angleVariation = 0.3 + Math.random() * 0.3;
+
+        // Rama izquierda
+        drawBranch(endX, endY, newLength, angle - angleVariation, depth + 1, maxDepth);
+
+        // Rama derecha
+        drawBranch(endX, endY, newLength, angle + angleVariation, depth + 1, maxDepth);
+
+        // A veces rama central
+        if (Math.random() > 0.6 && depth < maxDepth - 1) {
+          drawBranch(endX, endY, newLength * 0.8, angle + (Math.random() - 0.5) * 0.2, depth + 1, maxDepth);
+        }
+      }
+    }
+
+    // Crear corazón en el árbol
+    function createTreeHeart(x, y) {
+      const heart = document.createElement("div");
+      heart.className = "tree-heart";
+
+      const heartEmojis = ["❤️", "💕", "💗", "💓", "💖", "💝"];
+      heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+
+      heart.style.left = x + "px";
+      heart.style.bottom = (600 - y) + "px";
+
+      treeContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.classList.add("bloom");
+      }, 50);
+    }
+
+    // Función para crear el árbol
+    function growTree() {
+      // Ocultar mensaje y botón
+      finalMessage.style.transition = "opacity 1s ease";
+      finalMessage.style.opacity = "0";
+      bloomBtn.style.transition = "all 1s ease";
+      bloomBtn.style.opacity = "0";
+
+      setTimeout(() => {
+        finalMessage.style.display = "none";
+        bloomBtn.style.display = "none";
+
+        // Mostrar contenedor del árbol
+        treeContainer.style.display = "block";
+        treeShadow.classList.add("show");
+
+        // Animar el dibujo del árbol
+        setTimeout(() => {
+          // Dibujar tronco principal y ramas
+          const startX = 300;
+          const startY = 600;
+          const trunkHeight = 120;
+
+          // Tronco principal
+          ctx.beginPath();
+          ctx.moveTo(startX, startY);
+          ctx.lineTo(startX, startY - trunkHeight);
+          ctx.strokeStyle = "#2d1810";
+          ctx.lineWidth = 20;
+          ctx.lineCap = "round";
+          ctx.stroke();
+
+          // Dibujar ramas recursivamente
+          setTimeout(() => {
+            drawBranch(startX, startY - trunkHeight, 80, Math.PI / 2, 0, 6);
+
+            // Iniciar pétalos después de que crezca el árbol
+            setTimeout(() => {
+              startPetals();
+
+              // Mostrar botón de mensaje después de 2 segundos
+              setTimeout(() => {
+                messageBtn.style.display = "block";
+              }, 2000);
+            }, 3000);
+          }, 500);
+        }, 500);
+      }, 1000);
+    }
+
+    // Crear pétalos cayendo
+    function startPetals() {
+      setInterval(() => {
+        const petal = document.createElement("div");
+        petal.className = "petal";
+        const petalEmojis = ["🌸", "🌺", "💕", "💖"];
+        petal.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+        petal.style.left = (20 + Math.random() * 60) + "%";
+        petal.style.animationDuration = (3 + Math.random() * 3) + "s";
+        petal.style.animationDelay = "0s";
+        document.body.appendChild(petal);
+
+        setTimeout(() => petal.remove(), 6000);
+      }, 400);
+    }
+
+    // Mostrar pergamino
+    function showScroll() {
+      overlay.classList.add("show");
+      scrollContainer.classList.add("show");
+    }
+
+    // Cerrar pergamino
+    function hideScroll() {
+      overlay.classList.remove("show");
+      scrollContainer.classList.remove("show");
+    }
+
+    // FUNCIÓN MEJORADA PARA REPRODUCIR MÚSICA
+
+
+    // Event Listeners
+    startBtn.addEventListener("click", () => {
+      startBtn.style.display = "none";
+      matrixDiv.style.display = "block";
+      backgroundMusic.play();
+
+      fillScreen(revealMessage);
+    });
+
+
+
+    bloomBtn.addEventListener("click", () => {
+      growTree();
+    });
+
+    messageBtn.addEventListener("click", showScroll);
+    closeScroll.addEventListener("click", hideScroll);
+    overlay.addEventListener("click", hideScroll);
+
+    // Precargar el audio cuando la página cargue
+   
+
+    // Intentar reproducir si el usuario hace cualquier click en la página
+
+  </script>
+</body>
+
+</html>
